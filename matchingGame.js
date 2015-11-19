@@ -48,7 +48,6 @@ function card(suit, type, container) {
                     card = selected.shift();
                     removeCard(card);
                     player.matches.push(card);
-
                 }
                 alert("you got a match player " + player.id);
                 // after 2 are selected. Then call next player.
