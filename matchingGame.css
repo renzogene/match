@@ -10,6 +10,6 @@
     box-sizing: border-box;
 }
 
-.card.over {
-    background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/01_of_spades_A.svg/2000px-01_of_spades_A.svg.png);
+.card.over.spades.ace {
+    background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Aceofspades.svg/2000px-Aceofspades.svg.png);
 }
