@@ -17,38 +17,42 @@ function createEl(cls, parent) {
     parent.appendChild(el);
     return el;
 }
-function card(id, container) {
-    this.id = id;
+
+function removeCard(card) {
+    var index = cards.indexOf(card);
+    if(index !== -1){
+        cards.splice(index,1);
+    }
+}
+
+function card(suit, type, container) {
+    var self = this;
+    this.suit = suit;
+    this.type = type;
     var el = createEl("card", container);
+    el.classList.add(suit);
+    el.classList.add(type);
+    el.innerHTML = '<b>' + suit + ' ' + type + '</b>';
     el.onclick = function () {
+        var card;
         // add the card to selected.
-        selected.push(card[id]);
+        selected.push(self);
 
         // if the selected has 2 items in it.
-        if(selected === [1]) {
+        if(selected.length > 1) {
             // then check to see if they both match. selected[0] === selected[1]
-            if (selected[0] === selected[1]) {
+            if (selected[0].type === selected[1].type) {
                 // then if they match take them both out of the cards. And Add them to the matches of the player.
-                player.matches.push(selected);
-                var cardBeingDestroyed = [];
-                for(var i = 0; i < amountOfCards; i += 1) {
-                    if(selected[0] === card(i)) {
-                        cardBeingDestroyed.push(card(i));
-                    }
-                    if(selected[1] === card(i)) {
-                        cardBeingDestroyed.push(card(i));
-                    }
+                while(selected.length) {
+                    card = selected.shift();
+                    removeCard(card);
+                    player.matches.push(card);
                 }
-                cards.splice(cardBeingDestroyed);
-                selected = null;
+                // after 2 are selected. Then call next player.
+                nextPlayer();
             }
         }
-        // after 2 are selected. Then call next player.
-
-
-        player.matches.push(card[id]);
-        nextPlayer();
-    }
+    };
 }
 
 function nextPlayer() {
@@ -64,9 +68,12 @@ function nextPlayer() {
 
 function matchingGame() {
     var container = createEl('container', document.body);
-    for (var i = 0; i < amountOfCards; i += 1) {
-        cards.push(new card(i, container));
-        cards.push(new card(i, container));
+    var suits = ['clubs', 'spades', 'hearts', 'diamonds'];
+    var types = ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king'];
+    for (var i = 0; i < suits.length; i += 1) {
+        for(var j = 0; j < types.length; j += 1) {
+            cards.push(new card(suits[i], types[j], container));
+        }
     }
 
 
