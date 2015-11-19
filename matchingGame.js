@@ -35,6 +35,7 @@ function card(suit, type, container) {
     el.innerHTML = '<b>' + suit + ' ' + type + '</b>';
     el.onclick = function () {
         var card;
+
         // add the card to selected.
         selected.push(self);
 
@@ -47,6 +48,7 @@ function card(suit, type, container) {
                     card = selected.shift();
                     removeCard(card);
                     player.matches.push(card);
+                    alert("you got a match")
                 }
                 // after 2 are selected. Then call next player.
                 nextPlayer();
@@ -75,7 +77,6 @@ function matchingGame() {
             cards.push(new card(suits[i], types[j], container));
         }
     }
-
 
 }
 matchingGame();
