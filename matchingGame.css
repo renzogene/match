@@ -13,3 +13,6 @@
 .card.over.spades.ace {
     background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Aceofspades.svg/2000px-Aceofspades.svg.png);
 }
+.card.color {
+    background: blue;
+}
