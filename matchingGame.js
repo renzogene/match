@@ -36,7 +36,6 @@ function card(suit, type, container) {
     el.classList.add(type);
     el.innerHTML = '<b>' + suit + ' ' + type + '</b>';
     el.onclick = function () {
-
         var card;
         // add the card to selected.
         selected.push(self);
@@ -53,7 +52,6 @@ function card(suit, type, container) {
                 }
                 alert("you got a match player " + player.id);
                 // after 2 are selected. Then call next player.
-
                 nextPlayer();
             }
         }

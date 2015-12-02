@@ -5,14 +5,12 @@
     display: inline-block;
     width: 100px;
     height: 100px;
-    background: #32fa96;
     border: 1px solid #333;
     box-sizing: border-box;
+    background-image: url(https://gm1.ggpht.com/d8Hvr5czRGf8QF65ZZ93WPmTq1JQzYSutzH4q-Ww5O7FQZ4tb9n6Dx_V8PQR4CwA7KXaa_QT-pT1r3fg-ghoA1_5onSnz8J-CEjpYa4Sagwgbia4_2LtzVnPf-Xp0bmDGCv-l0mW3H-AMbopACI1PMG1XfCW0fP-z6EWLCQPU0jSTOnGrytM9MGhqgGvKhcNny1ZjvJlufwqKob1eY19P7apmdEhQ11vQjbNts5ggXacsA42KLk5btYXgvzIz0pkGtOhqDJTBeMG250U0W3bk92h2_eFE9z3LmAh2GpADMkgQy2jNw3bT-AFiYep9bSNQLkyGyJQBVPwcvZKhGjJQLqu9XPp19T7q4pcPwARWnUGQ_x4n7vzBSa1iifEg14wD0g317TFMA2Gu93Xc-Nejjt_pE-pQfWHvlxOKl6Odh8hyLZbpHTIGEn7gXvwQa4eqFqWjM_iaycTmIIan0sCSVGq3uGArjVg4B-6o82Pa3-7-6DFstPqFsWXJJvox9GkHd6CVadkf5yrHVOvZqKTBape4IvD4PJsYGUWL8GGJMWvR2VEdU_e8Co-ZoGOrifA9idsCfidJ_kAWXQqeLtfSCNAZ9MrCi3_ce_XWcMVCG2dX1yociZXx3fNSsj1dgAnDF-CrlyfRrJwZtsVx1UlfNUkfMnQQWbMaDRnxoglrGOP=s0-l75-ft-l75-ft);
+    background-color: #cccccc;
+    background-position: center;
 }
+.card.over {
 
-.card.over.spades.ace {
-    background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Aceofspades.svg/2000px-Aceofspades.svg.png);
-}
-.card.color {
-    background: blue;
 }
