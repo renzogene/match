@@ -17,6 +17,13 @@ function createEl(cls, parent) {
     var el = document.createElement('div');
     el.classList.add(cls);
     parent.appendChild(el);
+    el.addEventListener('click', function() {
+        if(el.classList.contains('over')) {
+            el.classList.remove('over');
+        }else {
+            el.classList.add('over');
+        }
+    })
     return el;
 }
 
@@ -34,6 +41,7 @@ function card(suit, type, container) {
     var el = createEl("card", container);
     el.classList.add(suit);
     el.classList.add(type);
+    el.classList.add("over");
     el.innerHTML = '<b>' + suit + ' ' + type + '</b>';
     el.onclick = function () {
         var card;
