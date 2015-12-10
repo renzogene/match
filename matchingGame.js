@@ -71,14 +71,13 @@ function nextPlayer() {
 
 function matchingGame() {
     var container = createEl('container', document.body);
-    var suits = ['clubs', 'spades', 'hearts', 'diamonds'];
+    var suits = ['club', 'spade', 'heart', 'diamond'];
     var types = ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king'];
     for (var i = 0; i < suits.length; i += 1) {
         for(var j = 0; j < types.length; j += 1) {
             cards.push(new card(suits[i], types[j], container));
         }
     }
-
 }
 matchingGame();
 
