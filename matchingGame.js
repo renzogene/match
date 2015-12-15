@@ -3,14 +3,12 @@
  */
 var cards = [];
 var selected = [];
-var amountOfCards = 4;
 var players = [
     {id:"A", matches:[]},
     {id:"B", matches:[]}
 ];
 
 var player = players[0];
-amountOfCards = amountOfCards/2;
 console.log(cards);
 
 function createEl(cls, parent) {
