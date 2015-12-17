@@ -40,7 +40,6 @@ function card(suit, type, container) {
     el.classList.add(suit);
     el.classList.add(type);
     el.classList.add("over");
-    el.innerHTML = '<b>' + suit + ' ' + type + '</b>';
     el.onclick = function () {
         var card;
         // add the card to selected.
@@ -58,6 +57,7 @@ function card(suit, type, container) {
                 }
                 alert("you got a match player " + player.id);
                 // after 2 are selected. Then call next player.
+                document.querySelector(".player").innerHTML = player.id;
                 nextPlayer();
             }
         }
