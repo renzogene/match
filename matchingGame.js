@@ -16,10 +16,12 @@ function createEl(cls, parent) {
     el.classList.add(cls);
     parent.appendChild(el);
     el.addEventListener('click', function() {
-        if(el.classList.contains('over')) {
-            el.classList.remove('over');
-        }else {
-            el.classList.add('over');
+        if(!el.classList.contains('owner')) {
+            if (el.classList.contains('over')) {
+                el.classList.remove('over');
+            } else {
+                el.classList.add('over');
+            }
         }
     })
     return el;
@@ -32,6 +34,34 @@ function removeCard(card) {
     }
 }
 
+function selectCard(crd) {
+    // add the card to selected.
+    selected.push(crd);
+
+    // if the selected has 2 items in it.
+    if(selected.length > 1) {
+        checkForMatch();
+        selected.length = 0;
+        nextPlayer();
+    }
+}
+
+function checkForMatch() {
+    var c;
+    // then check to see if they both match. selected[0] === selected[1]
+    if (selected[0].type === selected[1].type) {
+        // then if they match take them both out of the cards. And Add them to the matches of the player.
+        while(selected.length) {
+            c = selected.shift();
+            c.owner(player);
+            removeCard(c);
+            player.matches.push(c);
+        }
+        alert("you got a match player " + player.id);
+        // after 2 are selected. Then call next player.
+    }
+}
+
 function card(suit, type, container) {
     var self = this;
     this.suit = suit;
@@ -41,26 +71,14 @@ function card(suit, type, container) {
     el.classList.add(type);
     el.classList.add("over");
     el.onclick = function () {
-        var card;
-        // add the card to selected.
-        selected.push(self);
-
-        // if the selected has 2 items in it.
-        if(selected.length > 1) {
-            // then check to see if they both match. selected[0] === selected[1]
-            if (selected[0].type === selected[1].type) {
-                // then if they match take them both out of the cards. And Add them to the matches of the player.
-                while(selected.length) {
-                    card = selected.shift();
-                    removeCard(card);
-                    player.matches.push(card);
-                }
-                alert("you got a match player " + player.id);
-                // after 2 are selected. Then call next player.
-                document.querySelector(".player").innerHTML = player.id;
-                nextPlayer();
-            }
+        if(!el.classList.contains("owner")) {
+            selectCard(self);
+            draw();
         }
+    };
+    this.owner = function(owner) {
+        el.classList.add('owner');
+        el.innerHTML = "<div class=\"owner-name\">" + owner.id + "</div>";
     };
 }
 
@@ -72,7 +90,32 @@ function nextPlayer() {
         index = 0;
     }
     player = players[index];
-    console.log(player)
+    console.log(player);
+    draw();
+}
+
+function draw(){
+    document.querySelector(".player").innerHTML = player.id;
+}
+
+function randomIndex(len) {
+    return Math.floor(Math.random() * len);
+}
+
+function shuffle(list) {
+    // loop through the list
+    for(var i = 0; i < cards.length; i += 1) {
+        card(i)
+    }
+    var shuffleTimes = list.length;
+    // -- for loop the number of shuffleTimes
+    for(var i = 0; i < shuffleTimes; i += 1) {
+        var a = randomIndex(cards.length);
+        var b = randomIndex(cards.length);
+        var tmp = a;//list at index a
+        index.a = index.b;// list at index a = list at index b
+        b = tmp;// list at index b = tmp;
+    }
 }
 
 function matchingGame() {
@@ -84,6 +127,8 @@ function matchingGame() {
             cards.push(new card(suits[i], types[j], container));
         }
     }
+    shuffle(cards);
+    draw();
 }
 matchingGame();
 
