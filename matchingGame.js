@@ -112,9 +112,9 @@ function shuffle(list) {
     for(var i = 0; i < shuffleTimes; i += 1) {
         var a = randomIndex(cards.length);
         var b = randomIndex(cards.length);
-        var tmp = a;//list at index a
-        index.a = index.b;// list at index a = list at index b
-        b = tmp;// list at index b = tmp;
+        var tmp = cards[a];//list at index a
+        cards[a] = cards[b];// list at index a = list at index b
+        cards[b] = tmp;// list at index b = tmp;
     }
 }
 
