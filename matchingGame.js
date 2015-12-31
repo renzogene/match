@@ -51,7 +51,7 @@ function checkForMatch() {
     // then check to see if they both match. selected[0] === selected[1]
     if (selected[0].type === selected[1].type) {
         // then if they match take them both out of the cards. And Add them to the matches of the player.
-        while(selected.length) {
+        while (selected.length) {
             c = selected.shift();
             c.owner(player);
             removeCard(c);
@@ -59,6 +59,9 @@ function checkForMatch() {
         }
         alert("you got a match player " + player.id);
         // after 2 are selected. Then call next player.
+    } else {
+        el.selected[0].classList.remove('over');
+        el.selected[1].classList.remove('over');
     }
 }
 
@@ -79,6 +82,9 @@ function card(suit, type, container) {
     this.owner = function(owner) {
         el.classList.add('owner');
         el.innerHTML = "<div class=\"owner-name\">" + owner.id + "</div>";
+    };
+    this.attach = function() {
+        container.appendChild(el);
     };
 }
 
@@ -102,11 +108,8 @@ function randomIndex(len) {
     return Math.floor(Math.random() * len);
 }
 
-function shuffle(list) {
+function shuffle(list,container) {
     // loop through the list
-    for(var i = 0; i < cards.length; i += 1) {
-        card(i)
-    }
     var shuffleTimes = list.length;
     // -- for loop the number of shuffleTimes
     for(var i = 0; i < shuffleTimes; i += 1) {
@@ -115,6 +118,10 @@ function shuffle(list) {
         var tmp = cards[a];//list at index a
         cards[a] = cards[b];// list at index a = list at index b
         cards[b] = tmp;// list at index b = tmp;
+    }
+    container.innerHTML = '';
+    for(i = 0; i < list.length; i += 1) {
+        list[i].attach();
     }
 }
 
@@ -127,10 +134,10 @@ function matchingGame() {
             cards.push(new card(suits[i], types[j], container));
         }
     }
-    shuffle(cards);
+    shuffle(cards,container);
     draw();
 }
 matchingGame();
 
-console.log(player);
+innerHTML = (player);
 
