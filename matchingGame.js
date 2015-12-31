@@ -15,15 +15,6 @@ function createEl(cls, parent) {
     var el = document.createElement('div');
     el.classList.add(cls);
     parent.appendChild(el);
-    el.addEventListener('click', function() {
-        if(!el.classList.contains('owner')) {
-            if (el.classList.contains('over')) {
-                el.classList.remove('over');
-            } else {
-                el.classList.add('over');
-            }
-        }
-    })
     return el;
 }
 
@@ -35,14 +26,16 @@ function removeCard(card) {
 }
 
 function selectCard(crd) {
+    if (selected.length > 1) {
+        return;
+    }
     // add the card to selected.
+    crd.flip();
     selected.push(crd);
 
     // if the selected has 2 items in it.
     if(selected.length > 1) {
         checkForMatch();
-        selected.length = 0;
-        nextPlayer();
     }
 }
 
@@ -57,11 +50,15 @@ function checkForMatch() {
             removeCard(c);
             player.matches.push(c);
         }
-        alert("you got a match player " + player.id);
+        console.log("you got a match player " + player.id, "font-wight:bold");
+        nextPlayer();
         // after 2 are selected. Then call next player.
     } else {
-        el.selected[0].classList.remove('over');
-        el.selected[1].classList.remove('over');
+setTimeout(function() {
+    selected[0].flip();
+    selected[1].flip();
+    nextPlayer();
+}, 2000)
     }
 }
 
@@ -86,9 +83,17 @@ function card(suit, type, container) {
     this.attach = function() {
         container.appendChild(el);
     };
+    this.flip = function(){
+        if(el.classList.contains("over")) {
+            el.classList.remove("over")
+        } else {
+            el.classList.add("over")
+        }
+    };
 }
 
 function nextPlayer() {
+    selected.length = 0;
     var index = players.indexOf(player);
     if(index < players.length - 1) {
         index += 1;
