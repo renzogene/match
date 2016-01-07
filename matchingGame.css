@@ -1,3 +1,26 @@
+.header {
+    background: #336699;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.header > div {
+    display: inline-block;
+}
+
+.scores {
+    float:right;
+}
+
+.cheat {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: #FFFFFF;
+}
+
 .container {
     width: 100%;
 }
