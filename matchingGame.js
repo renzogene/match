@@ -160,7 +160,6 @@ function matchingGame() {
 matchingGame();
 
 innerHTML = (player);
-setVolume(50);
 
 
 
