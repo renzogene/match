@@ -54,6 +54,8 @@ function checkForMatch() {
             c.owner(player);
             removeCard(c);
             player.matches.push(c);
+            var audio = new Audio('success.mp3');
+            audio.play();
         }
         draw();
         // after 2 are selected. Then call next player.
@@ -62,6 +64,8 @@ function checkForMatch() {
             selected[0].flip();
             selected[1].flip();
             nextPlayer();
+            var audio = new Audio('fail.mp3');
+            audio.play();
         }, 2000)
     }
 }
@@ -74,7 +78,7 @@ function card(suit, type, container) {
     el.classList.add(suit);
     el.classList.add(type);
     el.classList.add("over");
-    el.innerHTML = '<div class="cheat">' + this.suit + ":" + this.type + '</div>';
+    //el.innerHTML = '<div class="cheat">' + this.suit + ":" + this.type + '</div>';
     el.onclick = function () {
         if (!el.classList.contains("owner")) {
             selectCard(self);
@@ -156,4 +160,7 @@ function matchingGame() {
 matchingGame();
 
 innerHTML = (player);
+setVolume(50);
+
+
 
