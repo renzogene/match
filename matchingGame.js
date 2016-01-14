@@ -2,6 +2,9 @@
  * Created by George Davies on 11/5/2015.
  */
 var cards = [];
+var fail = new Audio('fail.mp3');
+fail.volume = 0.25;
+var success = new Audio('success.mp3');
 var selected = [];
 var players = [
     //{id: "A", matches: []},
@@ -54,18 +57,16 @@ function checkForMatch() {
             c.owner(player);
             removeCard(c);
             player.matches.push(c);
-            var audio = new Audio('success.mp3');
-            audio.play();
         }
         draw();
+        success.play();
         // after 2 are selected. Then call next player.
     } else {
+        fail.play();
         setTimeout(function () {
             selected[0].flip();
             selected[1].flip();
             nextPlayer();
-            var audio = new Audio('fail.mp3');
-            audio.play();
         }, 2000)
     }
 }
